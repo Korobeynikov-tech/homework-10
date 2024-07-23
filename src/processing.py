@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def filter_by_state(list_of_dicts, state='EXECUTED'):
     return [d for d in list_of_dicts if d.get('state') == state]
 
@@ -7,8 +9,6 @@ data = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.51236
 filtered_list = filter_by_state(data)
 print(filtered_list)
 
-
-from datetime import datetime
 
 def sort_by_date(dict_list, reverse=True):
     return sorted(dict_list, key=lambda x: datetime.strptime(x['date'], '%Y-%m-%d'), reverse=reverse)
