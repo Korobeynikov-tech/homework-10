@@ -3,6 +3,7 @@ from datetime import datetime
 def filter_by_state(list_of_dicts, state ='EXECUTED'):
     return [d for d in list_of_dicts if d.get('state') == state]
 
+
 '''Фильтрование списка словарей по указанному состоянию.
      data:
          args: Список словарей для фильтрации
@@ -12,7 +13,10 @@ def filter_by_state(list_of_dicts, state ='EXECUTED'):
          args: Список словарей с указанным состоянием
 '''
 # Пример использования
-data = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}, {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}, {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}, {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
+data = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}, 
+        {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}, 
+        {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}, 
+        {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
 
 filtered_list = filter_by_state(data)
 print(filtered_list)
@@ -21,6 +25,7 @@ print(filtered_list)
 def sort_by_date(dict_list, reverse=True):
     return sorted(dict_list, key=lambda x: x.get("date"), reverse=reverse)
 
+
 '''Сортировка списка словарей по дате.
     data:
         args: Список словарей для сортировки
@@ -28,7 +33,10 @@ def sort_by_date(dict_list, reverse=True):
         args: Список словарей, отсортированных по дате
 '''
 # Пример использования
-data = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}, {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}, {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}, {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
+data = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}, 
+        {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}, 
+        {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}, 
+        {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
 
 sorted_data = sort_by_date(data)
 print(sorted_data)
