@@ -3,13 +3,13 @@ def filter_by_state(list_of_dicts, state='EXECUTED'):
     """Фильтрование списка словарей по указанному состоянию.
 
         data:
-            args: Список словарей для фильтрации
+            args: List[Dict[str, Any]] - Список словарей для фильтрации
 
         state:
             str: Состояние, по которому выполняется фильтрация
 
         return:
-            args: Список словарей с указанным состоянием
+             List[Dict[str, Any]] - Список словарей с указанным состоянием
     """
 
     return [d for d in list_of_dicts if d.get('state') == state]
@@ -29,10 +29,10 @@ def sort_by_date(dict_list, reverse=True):
     """Сортировка списка словарей по дате.
 
         data:
-            args: Список словарей для сортировки
+            args: List[Dict[str, Any]] Список словарей для сортировки
 
         return:
-            args: Список словарей, отсортированных по дате
+            args: List[Dict[str, Any]] Список словарей, отсортированных по дате
     """
 
     return sorted(dict_list, key=lambda x: x.get("date"), reverse=reverse)
