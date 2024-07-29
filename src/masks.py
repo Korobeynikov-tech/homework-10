@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def get_mask_card_number(card_number: str) -> str:
     """Маскирует номер карты, оставляя видимыми первые 6 и последние 4 цифры.
 
@@ -28,7 +30,7 @@ account_num = "73654108430135874305"
 print(get_mask_card_number(card_num))  # Вывод: 7000 79** **** 6361
 print(get_mask_account(account_num))   # Вывод: **4305
 
-from datetime import datetime
+
 def get_date(date_str):
     """
     Преобразует строку с датой из формата "YYYY-MM-DDTHH:MM:SS.ssssss" в формат "ДД.ММ.ГГГГ".
