@@ -15,13 +15,13 @@ def test_get_mask_card_number():
     assert get_mask_card_number("") == ""
 
 
-def test_get_mask_card_number_edge_cases():
+def test_get_mask_card_number_2_edge_cases():
     assert get_mask_card_number("1234 5678 9012 3456") == "1234 56** **** 3456"
     assert get_mask_card_number("1234-5678-9012-3456") == "1234 56** **** 3456"
     assert get_mask_card_number("12-3456-7890-1234") == "12 34** **** 1234"
 
 
-def test_get_mask_card_number_invalid_input():
+def test_get_mask_card_number_3_invalid_input():
     assert get_mask_card_number(None) == ""
     assert get_mask_card_number("invalid") == "inva lid"
     assert get_mask_card_number("1234abcd5678") == "1234 ab** **** 5678"
@@ -179,7 +179,7 @@ def event_data():
 {"event": "c", "date": "2022-12-12"}]
 
 
-def test_get_mask_card_number(card_numbers):
+def test_get_mask_card_number_3(card_numbers):
     assert get_mask_card_number(card_numbers[0]) == "1234 56** **** 3456"
     assert get_mask_card_number(card_numbers[1]) == "6543 21** **** 4321"
     assert get_mask_card_number(card_numbers[2]) == "8765 43** **** 5432"
@@ -187,7 +187,7 @@ def test_get_mask_card_number(card_numbers):
     assert get_mask_card_number(card_numbers[4]) == ""
 
 
-def test_get_mask_account(accounts):
+def test_get_mask_account_1(accounts):
     for acc_number, masked_number in accounts:
         assert get_mask_account(acc_number) == masked_number
 
