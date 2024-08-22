@@ -29,10 +29,10 @@ def sort_by_date(dict_list, reverse=True):
     """Сортировка списка словарей по дате.
 
         data:
-            args: List[Dict[str, Any]] - Список словарей для сортировки
+            args: List[Dict[str, Any]] Список словарей для сортировки
 
         return:
-            args: List[Dict[str, Any]] - Список словарей, отсортированных по дате
+            args: List[Dict[str, Any]] Список словарей, отсортированных по дате
     """
 
     return sorted(dict_list, key=lambda x: x.get("date"), reverse=reverse)
