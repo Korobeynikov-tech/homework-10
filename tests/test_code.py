@@ -1,9 +1,9 @@
 import pytest
-from src import get_mask_card_number
-from src import get_mask_account
-from src import get_date
-from src import filter_by_state
-from src import sort_by_date
+from src.masks import get_mask_card_number
+from src.masks import get_mask_account
+from src.masks import get_date
+from src.processing import filter_by_state
+from src.processing import sort_by_date
 from datetime import datetime
 
 
