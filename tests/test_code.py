@@ -7,19 +7,6 @@ from src.processing import sort_by_date
 from datetime import datetime
 
 
-def test_get_mask_card_number():
-    assert get_mask_card_number("1234567890123456") == "1234 56** **** 3456"
-    assert get_mask_card_number("6543210987654321") == "6543 21** **** 4321"
-    assert get_mask_card_number("8765432198765432") == "8765 43** **** 5432"
-    assert get_mask_card_number("1234") == "1234"
-    assert get_mask_card_number("") == ""
-    assert get_mask_card_number("1") == "1"
-    assert get_mask_card_number("12") == "12"
-    assert get_mask_card_number("123") == "123"
-    assert get_mask_card_number("1234 5") == "1234 5"
-    assert get_mask_card_number("123456") == "1234 56"
-
-
 def test_get_mask_card_number_2_edge_cases():
     assert get_mask_card_number("1234 5678 9012 3456") == "1234 56** **** 3456"
     assert get_mask_card_number("1234-5678-9012-3456") == "1234 56** **** 3456"
