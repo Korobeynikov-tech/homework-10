@@ -13,6 +13,11 @@ def test_get_mask_card_number():
     assert get_mask_card_number("8765432198765432") == "8765 43** **** 5432"
     assert get_mask_card_number("1234") == "1234"
     assert get_mask_card_number("") == ""
+    assert get_mask_card_number("1") == "1"
+    assert get_mask_card_number("12") == "12"
+    assert get_mask_card_number("123") == "123"
+    assert get_mask_card_number("1234 5") == "1234 5"
+    assert get_mask_card_number("123456") == "1234 56"
 
 
 def test_get_mask_card_number_2_edge_cases():
@@ -177,14 +182,6 @@ def event_data():
 {"event": "a", "date": "2023-10-01"},
 {"event": "b", "date": "2021-05-15"},
 {"event": "c", "date": "2022-12-12"}]
-
-
-def test_get_mask_card_number_3(card_numbers):
-    assert get_mask_card_number(card_numbers[0]) == "1234 56** **** 3456"
-    assert get_mask_card_number(card_numbers[1]) == "6543 21** **** 4321"
-    assert get_mask_card_number(card_numbers[2]) == "8765 43** **** 5432"
-    assert get_mask_card_number(card_numbers[3]) == "1234"
-    assert get_mask_card_number(card_numbers[4]) == ""
 
 
 def test_get_mask_account_1(accounts):
