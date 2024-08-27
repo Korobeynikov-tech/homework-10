@@ -7,6 +7,25 @@ from src.processing import sort_by_date
 from datetime import datetime
 
 
+def test_get_mask_card_number_invalid_input():
+    with pytest.raises(IndexError):
+        get_mask_card_number("1234567890")
+    with pytest.raises(IndexError):
+        get_mask_card_number("12345678901234567890")
+
+    with pytest.raises(IndexError):
+        get_mask_card_number("")
+
+    with pytest.raises(IndexError):
+        get_mask_card_number("123456789012345678901234567890")
+
+    with pytest.raises(IndexError):
+        get_mask_card_number("12345678901234567890123456789012345678901234567890")
+
+    with pytest.raises(IndexError):
+        get_mask_card_number("1")
+
+
 def test_get_mask_card_number_2_edge_cases():
     assert get_mask_card_number("1234 5678 9012 3456") == "1234 56** **** 3456"
     assert get_mask_card_number("1234-5678-9012-3456") == "1234 56** **** 3456"
