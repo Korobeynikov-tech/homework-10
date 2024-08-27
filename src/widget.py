@@ -1,20 +1,5 @@
-from masks import get_mask_card_number
-from masks import get_mask_account
-
-def check_and_mask(data):
-    if "счет" in data:
-        print(get_mask_card_number(card_num))
-    else:
-        print(get_mask_account(account_num))
-
-card_num = "7000792289606361"
-account_num = "73654108430135874305"
-
-# Вывод: 7000 79** **** 6361
-# Вывод: **4305
-
-
 from datetime import datetime
+
 def get_date(date_str):
     """
     Преобразует строку с датой из формата "YYYY-MM-DDTHH:MM:SS.ssssss" в формат "ДД.ММ.ГГГГ".
