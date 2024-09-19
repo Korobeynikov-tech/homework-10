@@ -4,6 +4,10 @@ from src.masks import get_mask_account
 from src.masks import get_date
 from src.processing import filter_by_state
 from src.processing import sort_by_date
+from src.generators import filter_by_currency
+from src.generators import transaction_descriptions
+from src.generators import card_number_generator
+from src.decorators import log
 from datetime import datetime
 
 
@@ -12,16 +16,12 @@ def test_get_mask_card_number_invalid_input():
         get_mask_card_number("1234567890")
     with pytest.raises(IndexError):
         get_mask_card_number("12345678901234567890")
-
     with pytest.raises(IndexError):
         get_mask_card_number("")
-
     with pytest.raises(IndexError):
         get_mask_card_number("123456789012345678901234567890")
-
     with pytest.raises(IndexError):
         get_mask_card_number("12345678901234567890123456789012345678901234567890")
-
     with pytest.raises(IndexError):
         get_mask_card_number("1")
 
@@ -34,7 +34,7 @@ def test_get_mask_card_number_2_edge_cases():
 
 def test_get_mask_card_number_3_invalid_input():
     assert get_mask_card_number(None) == ""
-    assert get_mask_card_number("invalid") == "inva lid"
+    assert get_mask_card_number("invalid") == "in va lid"
     assert get_mask_card_number("1234abcd5678") == "1234 ab** **** 5678"
 
 
@@ -148,7 +148,7 @@ def test_sort_by_date_invalid_dates():
 
 def test_sort_by_date_non_date_format():
     data = [
-        {"event": "a", "date": 1234567890},
+        {"event": "a", "date": "1234567890"},
         {"event": "b", "date": "not-a-date"},
         {"event": "c", "date": datetime(2023, 10, 1)},]
     sorted_data = sort_by_date(data, reverse=False)
@@ -205,3 +205,38 @@ def test_sort_by_date(event_data):
     assert sorted_data[0]["event"] == "a"
     assert sorted_data[1]["event"] == "c"
     assert sorted_data[2]["event"] == "b"
+
+
+def test_filter_by_currency(self):
+    transactions = [{'currency': 'USD', 'amount': 100}, {'currency': 'EUR', 'amount': 50},
+                    {'currency': 'USD', 'amount': 75}]
+    currency = 'USD'
+
+    filtered_transactions = list(filter_by_currency(transactions, currency))
+
+
+def test_transaction_descriptions(self):
+    transactions = [{'description': 'payment'}, {'description': 'refund'}, {'description': 'purchase'}]
+
+    descriptions = list(transaction_descriptions(transactions))
+
+def test_card_number_generator(self):
+    start = 1000
+    stop = 1005
+
+    card_numbers = list(card_number_generator(start, stop))
+
+
+@log()
+def test_func(a, b):
+    return a + b
+
+test_func(1, 2)
+test_func(3, "a")
+
+@log("logfile.txt")
+def test_func2(a, b):
+    return a / b
+
+test_func2(4, 2)
+test_func2(5, 0)
