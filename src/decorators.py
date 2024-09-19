@@ -1,6 +1,7 @@
 import functools
 import logging
 
+
 def log(filename=None):
     def decorator(func):
         if filename:

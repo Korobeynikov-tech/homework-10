@@ -6,12 +6,14 @@ def filter_by_currency(transactions, currency):
         if transaction.get('currency') == currency:
             yield transaction
 
+
 def transaction_descriptions(transactions):
     """
     Функция принимает список транзакций и возвращает описания всех транзакций.
     """
     for transaction in transactions:
         yield transaction.get('description')
+
 
 def card_number_generator(start, stop):
     """

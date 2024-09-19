@@ -220,6 +220,7 @@ def test_transaction_descriptions(self):
 
     descriptions = list(transaction_descriptions(transactions))
 
+
 def test_card_number_generator(self):
     start = 1000
     stop = 1005
@@ -233,6 +234,7 @@ def test_func(a, b):
 
 test_func(1, 2)
 test_func(3, "a")
+
 
 @log("logfile.txt")
 def test_func2(a, b):
