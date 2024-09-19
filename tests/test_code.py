@@ -44,8 +44,9 @@ def test_get_mask_card_number_3_invalid_input():
 ("4111111111111111", "**1111"),
 ("5105105105105100", "**5100"),
 ("1234567890", "**7890"),
-("9876543210", "**3210"),
-])
+("9876543210", "**3210")])
+
+
 def test_get_mask_account(input_data, expected_output):
     assert get_mask_account(input_data) == expected_output
 
@@ -232,6 +233,7 @@ def test_card_number_generator(self):
 def test_func(a, b):
     return a + b
 
+
 test_func(1, 2)
 test_func(3, "a")
 
@@ -239,6 +241,7 @@ test_func(3, "a")
 @log("logfile.txt")
 def test_func2(a, b):
     return a / b
+
 
 test_func2(4, 2)
 test_func2(5, 0)
