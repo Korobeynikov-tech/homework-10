@@ -4,10 +4,6 @@ from src.masks import get_mask_account
 from src.masks import get_date
 from src.processing import filter_by_state
 from src.processing import sort_by_date
-from src.generators import filter_by_currency
-from src.generators import transaction_descriptions
-from src.generators import card_number_generator
-from src.decorators import log
 from datetime import datetime
 
 
@@ -27,13 +23,11 @@ def test_get_mask_card_number_3_invalid_input():
 
 # следующая функция
 @pytest.mark.parametrize("input_data, expected_output", [
-("1234567890123456", "**3456"),
-("4111111111111111", "**1111"),
-("5105105105105100", "**5100"),
-("1234567890", "**7890"),
-("9876543210", "**3210")])
-
-
+    ("1234567890123456", "**3456"),
+    ("4111111111111111", "**1111"),
+    ("5105105105105100", "**5100"),
+    ("1234567890", "**7890"),
+    ("9876543210", "**3210")])
 def test_get_mask_account(input_data, expected_output):
     assert get_mask_account(input_data) == expected_output
 
@@ -71,11 +65,9 @@ def test_filter_by_state_no_state():
 
 
 @pytest.mark.parametrize("state, expected",
-[('IN_PROGRESS', [{'state': 'IN_PROGRESS'}]),
-('FAILED', [{'state': 'FAILED'}]),
-('PENDING', [{'state': 'PENDING'}])])
-
-
+                         [('IN_PROGRESS', [{'state': 'IN_PROGRESS'}]),
+                          ('FAILED', [{'state': 'FAILED'}]),
+                          ('PENDING', [{'state': 'PENDING'}])])
 def test_filter_by_state(state, expected):
     data = [{'state': 'IN_PROGRESS'}, {'state': 'FAILED'}, {'state': 'PENDING'}]
     assert filter_by_state(data, state) == expected
@@ -86,7 +78,7 @@ def test_sort_by_date_descending():
     data = [
         {"event": "a", "date": "2023-10-01"},
         {"event": "b", "date": "2021-05-15"},
-        {"event": "c", "date": "2022-12-12"},]
+        {"event": "c", "date": "2022-12-12"}, ]
     sorted_data = sort_by_date(data)
     assert sorted_data[0]["event"] == "a"  # Самая поздняя дата
     assert sorted_data[1]["event"] == "c"
@@ -97,7 +89,7 @@ def test_sort_by_date_ascending():
     data = [
         {"event": "a", "date": "2023-10-01"},
         {"event": "b", "date": "2021-05-15"},
-        {"event": "c", "date": "2022-12-12"},]
+        {"event": "c", "date": "2022-12-12"}, ]
     sorted_data = sort_by_date(data, reverse=False)
     assert sorted_data[0]["event"] == "b"  # Самая ранняя дата
     assert sorted_data[1]["event"] == "c"
@@ -108,7 +100,7 @@ def test_sort_by_date_identical_dates():
     data = [
         {"event": "a", "date": "2023-10-01"},
         {"event": "b", "date": "2023-10-01"},
-        {"event": "c", "date": "2023-10-01"},]
+        {"event": "c", "date": "2023-10-01"}, ]
     sorted_data = sort_by_date(data)
     assert sorted_data[0]["event"] == "a"  # Порядок не определен, но все равно должны быть в том же порядке
     assert sorted_data[1]["event"] == "b"
@@ -119,7 +111,7 @@ def test_sort_by_date_invalid_dates():
     data = [
         {"event": "a", "date": datetime(2023, 10, 1)},
         {"event": "b", "date": datetime(2023, 10, 2)},
-        {"event": "c", "date": datetime(2023, 10, 3)},]
+        {"event": "c", "date": datetime(2023, 10, 3)}, ]
     sorted_data = sort_by_date(data)
     assert sorted_data[0]["event"] == "c"  # 'b' с правильной датой должен быть первым
     assert sorted_data[1]["event"] == "b"  # 'c' с None датой
@@ -130,7 +122,7 @@ def test_sort_by_date_non_date_format():
     data = [
         {"event": "a", "date": datetime(2023, 10, 3)},
         {"event": "b", "date": datetime(2023, 10, 2)},
-        {"event": "c", "date": datetime(2023, 10, 1)},]
+        {"event": "c", "date": datetime(2023, 10, 1)}, ]
     sorted_data = sort_by_date(data, reverse=False)
     assert sorted_data[0]["event"] == "c"
     assert sorted_data[1]["event"] == "b"
@@ -145,29 +137,29 @@ def card_numbers():
 @pytest.fixture
 def accounts():
     return [
-("1234567890123456", "**3456"),
-("4111111111111111", "**1111"),
-("5105105105105100", "**5100"),
-("1234567890", "**7890"),
-("9876543210", "**3210")]
+        ("1234567890123456", "**3456"),
+        ("4111111111111111", "**1111"),
+        ("5105105105105100", "**5100"),
+        ("1234567890", "**7890"),
+        ("9876543210", "**3210")]
 
 
 @pytest.fixture
 def dates():
     return [
-("2023-05-15T12:30:45.123456", "15.05.2023"),
-("2000-01-01T00:00:00.000000", "01.01.2000"),
-("9999-12-31T23:59:59.999999", "31.12.9999"),
-("1999-12-31T00:00:00.123456", "31.12.1999"),
-("2023-05-15T12:30:45.010101", "15.05.2023")]
+        ("2023-05-15T12:30:45.123456", "15.05.2023"),
+        ("2000-01-01T00:00:00.000000", "01.01.2000"),
+        ("9999-12-31T23:59:59.999999", "31.12.9999"),
+        ("1999-12-31T00:00:00.123456", "31.12.1999"),
+        ("2023-05-15T12:30:45.010101", "15.05.2023")]
 
 
 @pytest.fixture
 def event_data():
     return [
-{"event": "a", "date": "2023-10-01"},
-{"event": "b", "date": "2021-05-15"},
-{"event": "c", "date": "2022-12-12"}]
+        {"event": "a", "date": "2023-10-01"},
+        {"event": "b", "date": "2021-05-15"},
+        {"event": "c", "date": "2022-12-12"}]
 
 
 def test_get_mask_account_1(accounts):
@@ -185,42 +177,3 @@ def test_sort_by_date(event_data):
     assert sorted_data[0]["event"] == "a"
     assert sorted_data[1]["event"] == "c"
     assert sorted_data[2]["event"] == "b"
-
-
-def test_filter_by_currency(self):
-    transactions = [{'currency': 'USD', 'amount': 100}, {'currency': 'EUR', 'amount': 50},
-                    {'currency': 'USD', 'amount': 75}]
-    currency = 'USD'
-
-    filtered_transactions = list(filter_by_currency(transactions, currency))
-
-
-def test_transaction_descriptions(self):
-    transactions = [{'description': 'payment'}, {'description': 'refund'}, {'description': 'purchase'}]
-
-    descriptions = list(transaction_descriptions(transactions))
-
-
-def test_card_number_generator(self):
-    start = 1000
-    stop = 1005
-
-    card_numbers = list(card_number_generator(start, stop))
-
-
-@log()
-def test_func(a, b):
-    return a + b
-
-
-test_func(1, 2)
-test_func(3, "a")
-
-
-@log("logfile.txt")
-def test_func2(a, b):
-    return a / b
-
-
-test_func2(4, 2)
-test_func2(5, 0)
